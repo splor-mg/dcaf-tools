@@ -720,8 +720,9 @@ FodyWeavers.xsd
 # VS Code files for those working on multiple tools
 *.code-workspace
 
-# Cursor files
+# AI files
 .cursor/
+.claude/
 
 # Local History for Visual Studio Code
 
