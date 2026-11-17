@@ -1,0 +1,71 @@
+[project]
+name = "dcaf-tools"
+version = "0.0.0"
+license = "MIT"
+description = "Funções auxiliares - DCAF/SPLOR-MG"
+authors = [
+    {name = "DCAF", email = "dcaf@planejamento.mg.gov.br"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "pandas (>=3.0.5,<4.0.0)"
+]
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.1.1,<10.0.0)",
+    "genbadge[coverage] (>=1.1.3,<2.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)",
+    "ruff (>=0.16.9,<0.17.0)",
+    "zensical (>=0.0.67,<0.0.68)",
+    "taskipy (>=1.14.1,<2.0.0)",
+    "commitizen (>=4.19.0,<5.0.0)",
+    "python-dotenv (>=1.2.4,<2.0.0)",
+    "ipykernel (>=7.4.0,<8.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.poetry]
+packages = [{include = "", from = "src"}]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+
+[tool.commitizen]
+name = 'cz_conventional_commits'
+tag_format = '$version'
+version_scheme = 'pep440'
+version_provider = 'pep621'
+update_changelog_on_bump = true
+major_version_zero = true
+
+
+[tool.taskipy.tasks]
+list = { cmd = 'task --list', help = 'Lists all tasks.' }
+lint = { cmd = 'ruff check', help = 'Checks for good coding practices in Python.' }
+pre_format = { cmd = 'ruff check --fix', help = 'Makes some best practice corrections.' }
+format = { cmd = 'ruff format', help = 'Formats code according to code style conventions.' }
+test = { cmd = 'pytest -vv --cov=zendt --cov-report=term-missing --cov-report=xml', help = 'Runs unit tests with coverage.' }
+test_debug = { cmd = 'pytest -s -x -vv', help = 'Runs unit tests in debug mode.' }
+coverage_badge = { cmd = 'genbadge coverage -i coverage.xml -o coverage.svg --local', help = 'Generates the README coverage badge.' }
+check = { cmd = 'task lint && task test', help = 'Runs lint and tests.' }
+bump = { cmd = 'cz bump', help = 'Bumps project version.' }
+publish = { cmd = 'task bump && dotenv run poetry publish --build -n && git push origin main --tags', help = 'Bumps version and publish the package on Pypi.' }
