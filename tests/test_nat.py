@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from nat import nat
+from dcaf_tools import nat
 
 @pytest.fixture
 def codigos_exemplo():

@@ -35,7 +35,7 @@ pythonpath = ["src"]
 testpaths = ["tests"]
 
 [tool.poetry]
-packages = [{include = "", from = "src"}]
+packages = [{ include = "dcaf_tools", from = "src" }]
 
 [tool.ruff]
 line-length = 79
@@ -63,7 +63,7 @@ list = { cmd = 'task --list', help = 'Lists all tasks.' }
 lint = { cmd = 'ruff check', help = 'Checks for good coding practices in Python.' }
 pre_format = { cmd = 'ruff check --fix', help = 'Makes some best practice corrections.' }
 format = { cmd = 'ruff format', help = 'Formats code according to code style conventions.' }
-test = { cmd = 'pytest -vv --cov=zendt --cov-report=term-missing --cov-report=xml', help = 'Runs unit tests with coverage.' }
+test = { cmd = 'pytest -vv --cov=dcaf_tools --cov-report=term-missing --cov-report=xml', help = 'Runs unit tests with coverage.' }
 test_debug = { cmd = 'pytest -s -x -vv', help = 'Runs unit tests in debug mode.' }
 coverage_badge = { cmd = 'genbadge coverage -i coverage.xml -o coverage.svg --local', help = 'Generates the README coverage badge.' }
 check = { cmd = 'task lint && task test', help = 'Runs lint and tests.' }

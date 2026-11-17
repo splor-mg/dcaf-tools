@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from adiciona_desc import adiciona_desc
+from dcaf_tools import adiciona_desc
 
 DATA = Path(__file__).parent / 'data'
 
