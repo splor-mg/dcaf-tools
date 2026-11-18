@@ -2,12 +2,14 @@ import pandas as pd
 
 def aid_to_dcaf(df: pd.DataFrame) -> pd.DataFrame:
     df = df.rename(columns=DICIONARIO_NAMES_AID_DCAF)
+    df = df.rename(columns=str.upper)
     return df
 
 
 def dcaf_to_aid(df: pd.DataFrame) -> pd.DataFrame:
     dict_inverso = {valor: chave for chave, valor in DICIONARIO_NAMES_AID_DCAF.items()}
     df = df.rename(columns=dict_inverso)
+    df = df.rename(columns=str.lower)
     return df
 
 
